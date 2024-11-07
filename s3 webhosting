@@ -1,0 +1,7 @@
+S3 static web hosting
+step 1 Create an s3 bucket then upload a index.html file into it.
+step 2 Then check if s3 is publicaly accsible diable block public access . 
+step 3 Enable static web hosting as well.
+step 4 Then check object ownership and make sure that acl is enabled if not enable it .Then go back to object select object go to actions click on make public using acl.
+step 4 Copy the object http url and paste it.
+then you can see the static website hosted .
