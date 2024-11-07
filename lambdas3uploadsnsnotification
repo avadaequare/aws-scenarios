@@ -1,0 +1,47 @@
+AWS S3 Bucket, Lambda Function with Simple Notification Service (SNS)
+
+step 1 Create s3 bucket 
+step 2 Create sns topic with subscription and mention email to get notified.
+step 3 Create an sns policy to make sure lambda can acess s3 sns and logs below is a policy for it
+aws rolepolicy
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "logs:DisassociateKmsKey",
+                "logs:DeleteSubscriptionFilter",
+                "logs:UntagLogGroup",
+                "logs:DeleteLogGroup",
+                "logs:DeleteLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateExportTask",
+                "logs:PutMetricFilter",
+                "s3:GetObject",
+                "logs:CreateLogStream",
+                "logs:DeleteMetricFilter",
+                "logs:TagLogGroup",
+                "sns:Publish",
+                "logs:DeleteRetentionPolicy",
+                "logs:AssociateKmsKey",
+                "logs:PutSubscriptionFilter",
+                "logs:PutRetentionPolicy"
+            ],
+            "Resource": [
+                "arn:aws:logs:*:354918405309:log-group:*:log-stream:*",
+                "arn:aws:logs:*:354918405309:log-group:*",
+                "arn:aws:s3:::lambdas3eventbucketnotification/*",
+                "arn:aws:sns:us-east-1:354918405309:s3event-topic"
+            ]
+        }
+    ]
+}
+make sure in place of 354918405309 u mention your aws acccount id and in arn:aws:s3:::lambdas3eventbucketnotification place your s3 bucket arn and in place of arn:aws:sns:us-east-1:354918405309:s3event-topic mention your sns topic arn.
+
+git link for policy and python code https://github.com/shankysharma86/aws/tree/master/S3-Lambda-SNS-Resources
+in the code make sure to specify sns arn.
+
+step 4 Create a role and attach this policy to that role
+step 5 Now create a lambda function with existing role u will get a drop down of role click on role you have created for it and then create lambda then after lambda is created copy code and paste it and deploy it then add trigerrs s3 and destination sns.
