@@ -30,10 +30,10 @@ aws rolepolicy
                 "logs:PutRetentionPolicy"
             ],
             "Resource": [
-                "arn:aws:logs:*:354918405309:log-group:*:log-stream:*",
-                "arn:aws:logs:*:354918405309:log-group:*",
-                "arn:aws:s3:::lambdas3eventbucketnotification/*",
-                "arn:aws:sns:us-east-1:354918405309:s3event-topic"
+                "arn:aws:logs:*:account no:log-group:*:log-stream:*",
+                "arn:aws:logs:*:account no:log-group:*",
+                "s3-arn",
+                "sns-arn"
             ]
         }
     ]
