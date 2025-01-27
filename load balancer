@@ -1,0 +1,85 @@
+load balancer
+first create 2 instances and make sure there are in same vpc but different subnet in different availability zone .
+then create 2 more subnets in same az as above for lb make sure that route table is assignet to these subnets and rt has igw enabled if you want to run an internet facing 
+webapp.
+Then create a load balancer application load balancer select the above vpc in which you have hosted your vpc and lb subnets not subnets assigned to ec2 then in listner an 
+target section enter port you want and press on create target group and crete target group with 2 ec2 as target.
+Now go to load balancer section and click on dropdown and select target group and click on create it will take some time to create once its created you will get dns use it 
+and try to access it.
+
+nginx  centos
+yum update 
+
+yum install nginx 
+
+sudo nano /etc/nginx/conf.d/mywebsite.conf
+
+server {
+    listen 80;
+    server_name your_domain_or_ip;
+
+    root /var/www/mywebsite;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+Add Your Website Files
+Create the directory for your website:
+
+sudo mkdir -p /var/www/mywebsite
+Add a test index.html file:
+
+echo "<h1>Welcome to My Website</h1>" | sudo tee /var/www/mywebsite/index.html
+
+ubuntu
+Add Your Website Files
+Place your website files in /var/www/html or create a new directory.
+
+Example:
+
+sudo mkdir -p /var/www/mywebsite
+sudo nano /var/www/mywebsite/index.html
+Add the following content as a test:
+
+html
+Copy code
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+</head>
+<body>
+    <h1>Hello from NGINX!</h1>
+</body>
+</html>
+Step 2: Create a Server Block
+Create a new configuration file for your site.
+
+sudo nano /etc/nginx/sites-available/mywebsite
+Add the following configuration:
+
+nginx
+
+server {
+    listen 80;
+    server_name your_domain_or_ip;
+
+    root /var/www/mywebsite;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+Step 3: Enable the Configuration
+Create a symbolic link:
+sudo ln -s /etc/nginx/sites-available/mywebsite /etc/nginx/sites-enabled/
+
+Test the configuration:
+sudo nginx -t
+
+Reload NGINX:
+sudo systemctl reload nginx
