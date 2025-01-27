@@ -1,0 +1,14 @@
+Vpc peering in aws cross region
+
+create a vpc in one of the region
+create a subnet and mention this vpc in drop down and specify ip so that it does notoverlap from vpc cidr.
+create an internet gate way and attach it to above created vpc
+Create a routetable and in routes mention igw then go to subnet association and assign above subnet to it
+craete a security group and give inbound riles ssh,http,https and icmp to ping.
+create an ec2 and make sure that it is placed in above vpc and enable public ip select existing securitygroup which you created then click create.
+
+follow the same above steps in another region
+then go to the first region and in vpc section you will have vpc peering click on it and create avpc peering mention first region vpc as requestor and second region vpc as acceptor make sure you select cross region option and press create then go to second region vpc peering click on it go to action and selct accept.
+
+then go to routetable of both regions and go to route and add peering connection 
+ssh into both ec2 in both regions and try to ping using their privateip in another ec2 you get response peering is done .
