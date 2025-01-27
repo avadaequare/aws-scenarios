@@ -1,0 +1,25 @@
+Ebs volume attach and detatch task
+
+create an ebs volume and click on drop down select instance and in another drop down you can mention /dev/xvdf
+once ebs is created click on action and click attach 
+now go to that vm and connect to it and follow below commands 
+lsblk
+sudo file -s /dev/xvdf --> The command sudo file -s /dev/xvdf is used to determine the type of file system or contents of the specified block device (in this case, /dev/xvdf).
+sudo mkfs -t xfs /dev/xvdf --> is used to format a block storage device (/dev/xvdf) with the XFS file system.
+df -k --> command is used to display information about the disk space usage of file systems on your system. The -k option ensures the output is in kilobytes (KB)
+mkdir ebsdemo
+ls
+mount /dev/xvdf ebsdemo
+even though we have mounted above it but once the instance is restarted the mount will be gone so to create permanent mount we do below command
+blkid --> to get uuid of /dev/xvdf
+sudo vi /etc/fstab
+you mention the uuid in above terminal UUID=9c8d8eb0-e2f8-4eb7-bd05-e51bef51c2ae /ebsdemo xfs defaults,nofail in this format.
+then go to ebsdemo path and create a file 
+then un mount it using umount ebsdemo command 
+then go to console and detach ebs command and attach to another server then again below commands.
+lsblk
+ls
+file -s /dev/xvdf
+mkdir /ebsdemo
+mount /dev/xvdf /ebsdemo
+now go to ebsdemo and check the file will be there.
