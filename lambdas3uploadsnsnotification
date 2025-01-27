@@ -38,7 +38,7 @@ aws rolepolicy
         }
     ]
 }
-make sure in place of 354918405309 u mention your aws acccount id and in arn:aws:s3:::lambdas3eventbucketnotification place your s3 bucket arn and in place of arn:aws:sns:us-east-1:354918405309:s3event-topic mention your sns topic arn.
+make sure in place of account no u mention your aws acccount id and in arn:aws:s3:::lambdas3eventbucketnotification place your s3 bucket arn and in place of arn:aws:sns:us-east-1:354918405309:s3event-topic mention your sns topic arn.
 
 git link for policy and python code https://github.com/shankysharma86/aws/tree/master/S3-Lambda-SNS-Resources
 in the code make sure to specify sns arn.
